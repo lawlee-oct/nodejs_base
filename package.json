@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-base",
+  "version": "1.0.0",
+  "description": "NodeJS base",
+  "author": "lamlqb",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-validation": "^4.1.0",
+    "helmet": "^7.0.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.5.2",
+    "nodemon": "^3.0.1",
+    "pretty-error": "^4.0.0",
+    "rate-limiter-flexible": "^2.4.1",
+    "sequelize": "^6.32.1"
+  }
+}
