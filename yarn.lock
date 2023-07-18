@@ -758,6 +758,11 @@
     "statuses" "2.0.1"
     "toidentifier" "1.0.1"
 
+"http-status@^1.6.2":
+  "integrity" "sha512-oUExvfNckrpTpDazph7kNG8sQi5au3BeTo0idaZFXEhTaJKu7GNJCLHI0rYY2wljm548MSTM+Ljj/c6anqu2zQ=="
+  "resolved" "https://registry.npmjs.org/http-status/-/http-status-1.6.2.tgz"
+  "version" "1.6.2"
+
 "iconv-lite@^0.6.3":
   "integrity" "sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw=="
   "resolved" "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.6.3.tgz"

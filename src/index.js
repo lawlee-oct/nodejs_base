@@ -9,6 +9,8 @@ const rateLimiterMiddleware = require("./middlewares/rate-limit");
 const errorLogger = require("./middlewares/error-logger");
 const errorHandler = require("./middlewares/error-handler");
 const connectDatabase = require("./utils/connectDatabase");
+const userRouter = require("./routers/user");
+const customResponse = require("./middlewares/custom-response");
 
 const app = express();
 
@@ -20,6 +22,10 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms")
 );
 app.use(rateLimiterMiddleware);
+app.use(customResponse());
+
+// ROUTER
+app.use("/v1", userRouter);
 
 // Handler Error
 app.use(errorLogger);
