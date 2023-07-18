@@ -6,8 +6,9 @@ const helmet = require("helmet");
 require("dotenv").config();
 
 const rateLimiterMiddleware = require("./middlewares/rate-limit");
-const errorLogger = require('./middlewares/error-logger');
-const errorHandler = require('./middlewares/error-handler');
+const errorLogger = require("./middlewares/error-logger");
+const errorHandler = require("./middlewares/error-handler");
+const connectDatabase = require("./utils/connectDatabase");
 
 const app = express();
 
@@ -31,6 +32,7 @@ const appListenedHandler = (err) => {
     return console.log("Cannot run!");
   }
 
+  connectDatabase();
   console.log(`----> App listen on ${process.env.HOST}:${PORT} <----`);
 };
 
