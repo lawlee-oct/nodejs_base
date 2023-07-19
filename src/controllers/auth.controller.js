@@ -3,11 +3,40 @@ const brcypt = require("bcrypt");
 const { User } = require("../models");
 const errors = require("../configs/errors");
 const appErrors = require("../configs/app-errors");
+const {
+  generateAccessToken,
+  generateRefreshToken,
+} = require("../utils/genarateToken");
 
 class AuthController {
   async login(req, res, next) {
     try {
-      res.ok("This is login", "This is login");
+      const findUser = await User.findOne({ email: req.body.email });
+
+      if (!findUser) {
+        throw errors.ValidationError(appErrors.USERNAME_PASSWORD_INCORRECT);
+      }
+
+      const validatorPass = await brcypt.compare(
+        req.body.password,
+        findUser.password
+      );
+
+      if (!validatorPass) {
+        throw errors.ValidationError(appErrors.USERNAME_PASSWORD_INCORRECT);
+      }
+
+      if (findUser && validatorPass) {
+        const accessToken = generateAccessToken(req.body.id);
+        const refreshToken = generateRefreshToken(req.body.id);
+
+        const dataResponse = {
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        };
+
+        res.ok(dataResponse, "Login successful!");
+      }
     } catch (error) {
       next(error);
     }
