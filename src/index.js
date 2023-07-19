@@ -11,6 +11,7 @@ const errorLogger = require("./middlewares/error-logger");
 const errorHandler = require("./middlewares/error-handler");
 const connectDatabase = require("./utils/connectDatabase");
 const userRouter = require("./routers/user");
+const authRouter = require("./routers/auth");
 const customResponse = require("./middlewares/custom-response");
 
 const app = express();
@@ -28,6 +29,7 @@ app.use(compression());
 
 // ROUTER
 app.use("/v1", userRouter);
+app.use("/v1/auth", authRouter);
 
 // Handler Error
 app.use(errorLogger);

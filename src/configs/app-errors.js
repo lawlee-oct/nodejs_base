@@ -13,10 +13,6 @@ module.exports = {
     code: 1002,
     message: "API not found.",
   },
-  WALLET_NOT_FOUND: {
-    code: 1003,
-    message: "Wallet not found.",
-  },
   TOO_MANY_REQUESTS: {
     code: 1004,
     message: "Too many requests.",
@@ -71,126 +67,16 @@ module.exports = {
     code: 1207,
     message: "Signature invalid.",
   },
-  PERMISSION: {
-    code: 1208,
-    message: "permission denied.",
-  },
   USERNAME_PASSWORD_INCORRECT: {
     code: 1209,
     message: "Email or password is incorrect.",
   },
-
   PASSWORD_INCORRECT: {
     code: 1210,
     message: "password is incorrect.",
   },
-  // Presale
-  PRESALE_NOT_FOUND: {
-    code: 2000,
-    message: "Presale not found.",
-  },
-
-  PAYMENT_HISTORY_NOT_FOUND: {
-    code: 2001,
-    message: "Payment history not found.",
-  },
-
-  WHITELIST_NOT_INVALID: {
-    code: 2002,
-    message: "Whitelist not invalid.",
-  },
-
-  PRESALE_NOT_ALREADY: {
-    code: 2003,
-    message: "Presale not already.",
-  },
-
-  BUYER_NOT_FOUND: {
-    code: 2004,
-    message: "Buyer not found.",
-  },
-
-  NOT_YET_TIME_FOR_PURCHASING: {
-    code: 2005,
-    message: "Presale: Not yet time for purchasing.",
-  },
-  TOKEN_SALE_HAS_ENDED: {
-    code: 2006,
-    message: "Presale has ended.",
-  },
-
-  INLVAID_PACKAGE_NUMER: {
-    code: 2007,
-    message: "Invalid package number",
-  },
-
-  ALL_TOKEN_HAS_BEEN_SOLD_OUT: {
-    code: 2008,
-    message: "All token has been sold out.",
-  },
-
-  TOTAL_TOKEN_BOUGHT_AND_BUYING_HAS_EXCEEDED_THE_LIMIT: {
-    code: 2009,
-    message: "Total token bought and buying has exceeded the limit.",
-  },
-
-  NOT_ENOUGH_USDT_BALANCE: {
-    code: 2010,
-    message: "Not enough USDT balance.",
-  },
-
-  FILE_NOT_FOUND: {
-    code: 2011,
-    message: "File not found.",
-  },
-
-  PRESALE_NOT_ACTIVE: {
-    code: 2012,
-    message: "Presale not active.",
-  },
-
-  WHITE_LIST_CONTAINT_INVALID_USDT_AMOUNT: {
-    code: 2013,
-    message: "White list containt invalid USDT amount.",
-  },
-
-  WHITE_LIST_CONTAINT_INVALID_ADDRESS: {
-    code: 2014,
-    message: "White list containt invalid address.",
-  },
-
-  WHITELIST_ONLY: {
-    code: 2015,
-    message:
-      "Private Presale is only available for those who have registered in the Whitelist",
-  },
-
-  WHITE_LIST_CONTAINT_INVALID_USDT_AMOUNT_LESS_THAN_MIN_AMOUNT: {
-    code: 2016,
-    message:
-      "The whitelist contains the number of USDT which should not be less MIN AMOUNT",
-  },
-
-  WHITE_LIST_CONTAINT_INVALID_USDT_AMOUNT_MORE_THAN_MAX_AMOUNT: {
-    code: 2017,
-    message:
-      "The whitelist contains the number of USDT which should not be more than MAX AMOUNT",
-  },
-
-  PRESALE_IMPORT_INVALID_DATA: {
-    code: 2018,
-    message: "Import Presale: Invalid data",
-  },
-  PRESALE_EXISTED: {
-    code: 2019,
-    message: "Presale existed",
-  },
-  UPLOAD_ONLY_EXCEL_FILE: {
-    code: 2020,
-    message: "Please upload only excel file.",
-  },
-  TRANSACTION_FAILED: {
-    code: 2021,
-    message: "TRANSACTION FAILED",
-  },
+  EMAIL_ALREADY_EXITS: {
+    code: 1211,
+    message: "Email address already exists"
+  }
 };
