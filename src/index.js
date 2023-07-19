@@ -3,6 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
+const compression = require("compression");
 require("dotenv").config();
 
 const rateLimiterMiddleware = require("./middlewares/rate-limit");
@@ -23,6 +24,7 @@ app.use(
 );
 app.use(rateLimiterMiddleware);
 app.use(customResponse());
+app.use(compression());
 
 // ROUTER
 app.use("/v1", userRouter);

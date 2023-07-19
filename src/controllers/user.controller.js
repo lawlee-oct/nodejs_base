@@ -1,7 +1,11 @@
+const UserService = require("../services/user.service");
+
 class UserController {
   async getUsers(req, res, next) {
     try {
-      res.ok("This is Data", "Get All User");
+      const users = await UserService.getUsers();
+
+      res.ok(users, "Get All User");
     } catch (error) {
       next(error);
     }
