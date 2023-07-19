@@ -9,6 +9,11 @@ class UserRepository extends BaseRepository {
   async getUsers() {
     return this.model.findAll();
   }
+
+  async getUserById(id) {
+    console.log('id', id);
+    return this.findById(id);
+  }
 }
 
 module.exports = { UserRepository };

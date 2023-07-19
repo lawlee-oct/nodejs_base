@@ -35,7 +35,7 @@ class AuthController {
           refresh_token: refreshToken,
         };
 
-        res.ok(dataResponse, "Login successful!");
+        res.ok(dataResponse, "Login successfully!");
       }
     } catch (error) {
       next(error);
@@ -63,7 +63,7 @@ class AuthController {
         user_name: req.body.user_name,
       });
 
-      res.ok(newUser, "Register successful!");
+      res.ok(newUser, "Register successfully!");
     } catch (error) {
       next(error);
     }

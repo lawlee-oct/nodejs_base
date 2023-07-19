@@ -5,7 +5,7 @@ class UserController {
     try {
       const users = await UserService.getUsers();
 
-      res.ok(users, "Get All User");
+      res.ok(users, "Get All User Successfully!");
     } catch (error) {
       next(error);
     }
@@ -13,7 +13,9 @@ class UserController {
 
   async getUserById(req, res, next) {
     try {
-      res.ok("This is Data", "Get User By ID");
+      const user = await UserService.getUserById(req.params.id);
+
+      res.ok(user, "Get User by id Successfully!");
     } catch (error) {
       next(error);
     }

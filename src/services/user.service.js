@@ -10,6 +10,12 @@ class UserService {
 
     return users;
   }
+
+  async getUserById(id) {
+    const user = await this.userRepository.getUserById(id);
+
+    return user;
+  }
 }
 
 module.exports = new UserService();
