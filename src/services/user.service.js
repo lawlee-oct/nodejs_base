@@ -1,3 +1,5 @@
+const appErrors = require("../configs/app-errors");
+const errors = require("../configs/errors");
 const { UserRepository } = require("../repositories/user.repository");
 
 class UserService {
@@ -15,6 +17,20 @@ class UserService {
     const user = await this.userRepository.getUserById(id);
 
     return user;
+  }
+
+  async updateUser(userId, newItem) {
+    const findUser = await this.userRepository.getUserById(userId);
+
+    if (!findUser) {
+      throw new errors.NotFound(appErrors.USER_DOES_NOT_EXITS);
+    }
+
+    await this.userRepository.updateUser(userId, newItem);
+
+    const userUpdated = await this.userRepository.getUserById(userId);
+
+    return userUpdated;
   }
 }
 

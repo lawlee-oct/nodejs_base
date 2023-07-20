@@ -78,5 +78,9 @@ module.exports = {
   EMAIL_ALREADY_EXITS: {
     code: 1211,
     message: "Email address already exists"
+  },
+  USER_DOES_NOT_EXITS: {
+    code: 1212,
+    message: "User does not exits."
   }
 };

@@ -2,4 +2,6 @@
 /node_modules
 .env
 
+/src/uploads
+
 package-lock.json

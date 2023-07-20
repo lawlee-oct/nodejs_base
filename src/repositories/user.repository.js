@@ -7,12 +7,19 @@ class UserRepository extends BaseRepository {
   }
 
   async getUsers() {
-    return this.model.findAll();
+    return this.findAll();
   }
 
   async getUserById(id) {
-    console.log('id', id);
     return this.findById(id);
+  }
+
+  async updateUser(userId, newItem) {
+    const updateUser = await this.update(newItem, {
+      where: { id: userId },
+    });
+
+    return updateUser;
   }
 }
 

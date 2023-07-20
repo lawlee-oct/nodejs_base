@@ -28,7 +28,7 @@ class BaseRepository {
   }
 
   findAll(options) {
-    return this.model.findAll(options)
+    return this.model.findAll(options);
   }
 
   search({ filter, order, pageSize, pageNumber }) {
@@ -84,8 +84,10 @@ class BaseRepository {
     return this.model.create(data);
   }
 
-  update(data, condition) {
-    return this.model.update(data, condition);
+  async update(data, condition) {
+    const item = await this.model.update(data, condition);
+
+    return item;
   }
 
   bulkCreate(data) {
@@ -95,6 +97,7 @@ class BaseRepository {
   async updateOrCreate(where, newItem) {
     // First try to find the record
     const foundItem = await this.model.findOne({ where });
+
     if (!foundItem) {
       // Item not found, create a new one
       const item = await this.model.create(newItem);
