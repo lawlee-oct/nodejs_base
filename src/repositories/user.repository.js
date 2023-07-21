@@ -14,6 +14,10 @@ class UserRepository extends BaseRepository {
     return this.findById(id);
   }
 
+  async getUserByEmail(emailReq) {
+    return this.findOne({ email: emailReq });
+  }
+
   async updateUser(userId, newItem) {
     const updateUser = await this.update(newItem, {
       where: { id: userId },

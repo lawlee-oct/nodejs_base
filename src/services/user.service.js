@@ -19,6 +19,12 @@ class UserService {
     return user;
   }
 
+  async getUserByEmail(email) {
+    const user = await this.userRepository.getUserByEmail(email);
+
+    return user;
+  }
+
   async updateUser(userId, newItem) {
     const findUser = await this.userRepository.getUserById(userId);
 

@@ -7,14 +7,18 @@ const {
   generateAccessToken,
   generateRefreshToken,
 } = require("../utils/genarateToken");
+const authSchema = require("../validation/authSchema");
+const UserService = require("../services/user.service");
 
 class AuthController {
   async login(req, res, next) {
     try {
-      const findUser = await User.findOne({ email: req.body.email });
+      await authSchema.validateAsync(req.body);
+
+      const findUser = await UserService.getUserByEmail(req.body.email);
 
       if (!findUser) {
-        throw errors.ValidationError(appErrors.USERNAME_PASSWORD_INCORRECT);
+        throw new errors.ValidationError(appErrors.USERNAME_PASSWORD_INCORRECT);
       }
 
       const validatorPass = await brcypt.compare(
@@ -23,7 +27,7 @@ class AuthController {
       );
 
       if (!validatorPass) {
-        throw errors.ValidationError(appErrors.USERNAME_PASSWORD_INCORRECT);
+        throw new errors.ValidationError(appErrors.USERNAME_PASSWORD_INCORRECT);
       }
 
       if (findUser && validatorPass) {
@@ -44,14 +48,12 @@ class AuthController {
 
   async register(req, res, next) {
     try {
+      await authSchema.validateAsync(req.body);
+
       const salt = await brcypt.genSalt(10);
       const hashed = await brcypt.hash(req.body.password, salt);
 
-      const findEmail = await User.findOne({
-        where: {
-          email: req.body.email,
-        },
-      });
+      const findEmail = await UserService.getUserByEmail(req.body.email);
 
       if (findEmail) {
         throw new errors.Unprocessable(appErrors.EMAIL_ALREADY_EXITS);
