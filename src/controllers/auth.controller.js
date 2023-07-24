@@ -9,6 +9,7 @@ const {
 } = require("../utils/genarateToken");
 const authSchema = require("../validation/authSchema");
 const UserService = require("../services/user.service");
+const { appEvent, EVENTS } = require("../event");
 
 class AuthController {
   async login(req, res, next) {
@@ -64,6 +65,8 @@ class AuthController {
         password: hashed,
         user_name: req.body.user_name,
       });
+
+      appEvent.emit(EVENTS.USER.NEW, newUser);
 
       res.ok(newUser, "Register successfully!");
     } catch (error) {

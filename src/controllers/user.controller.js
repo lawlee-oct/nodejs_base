@@ -2,6 +2,7 @@ const appErrors = require("../configs/app-errors");
 const errors = require("../configs/errors");
 const UserService = require("../services/user.service");
 const { uploadFileS3 } = require("../utils/uploadFileS3");
+const { redisClient } = require("../configs/redis");
 
 class UserController {
   async getUsers(req, res, next) {
@@ -16,9 +17,23 @@ class UserController {
 
   async getUserById(req, res, next) {
     try {
-      const user = await UserService.getUserById(req.params.id);
+      const { id } = req.params;
 
-      res.ok(user, "Get User by id Successfully!");
+      const redisKey = `user_${id}`;
+
+      if (await redisClient.exists(redisKey)) {
+        const data = await redisClient.get(redisKey);
+
+        res.ok(JSON.parse(data));
+      } else {
+        const user = await UserService.getUserById(id);
+
+        if (!user) {
+          throw new errors.BadRequest(appErrors.USER_NOT_FOUND);
+        }
+
+        res.ok(user, "Get User by id Successfully!");
+      }
     } catch (error) {
       next(error);
     }
