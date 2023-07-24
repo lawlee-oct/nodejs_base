@@ -1,6 +1,7 @@
 const eventEmitter = require("eventemitter2");
 
 const redis = require("./configs/redis");
+const { sendMail } = require("./utils/sendMail");
 
 const appEvent = new eventEmitter.EventEmitter2({
   wildcard: true,
@@ -32,6 +33,8 @@ publisher
 appEvent.on(EVENTS.USER.NEW, async (user) => {
   try {
     setImmediate(() => {
+      sendMail(user.email, "Please click to verify your email!", "Click here!");
+
       redis.redisClient.set(`user_${user.id}`, JSON.stringify(user));
     });
   } catch (error) {
