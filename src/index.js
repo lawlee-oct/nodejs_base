@@ -13,6 +13,7 @@ const connectDatabase = require("./utils/connectDatabase");
 const userRouter = require("./routers/user");
 const authRouter = require("./routers/auth");
 const customResponse = require("./middlewares/custom-response");
+const { s3Butket } = require("./configs/s3");
 
 const app = express();
 
@@ -47,3 +48,9 @@ const appListenedHandler = (err) => {
 };
 
 app.listen(process.env.PORT, appListenedHandler);
+
+// const presignURLTest = s3Butket.getSignedUrl("getObject", {
+//   Bucket: process.env.AWS_BUCKET_NAME,
+//   Key: "1690162119822-a0dab9d5-ac16-477f-8edb-96ab65f7fe60-watches-image.png",
+//   Expires: 100,
+// });
