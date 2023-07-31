@@ -13,6 +13,7 @@ const errorHandler = require("./middlewares/error-handler");
 const connectDatabase = require("./utils/connectDatabase");
 const userRouter = require("./routers/user");
 const authRouter = require("./routers/auth");
+const notificationRouter = require("./routers/notification");
 const customResponse = require("./middlewares/custom-response");
 // const { s3Butket } = require("./configs/s3");
 
@@ -33,6 +34,7 @@ app.use(compression());
 // ROUTER
 app.use("/v1", userRouter);
 app.use("/v1/auth", authRouter);
+app.use("/v1/", notificationRouter);
 
 // Handler Error
 app.use(errorLogger);
@@ -72,6 +74,16 @@ app.listen(process.env.PORT, appListenedHandler);
 // Socket.IO
 const http = require("http");
 const { Server } = require("socket.io");
+const subscriberSocket = require("./utils/subscriberSocket");
+const { EVENTS } = require("./event");
+
+const notification = subscriberSocket;
+
+let dataNotification = null;
+
+notification.subscriber.subscribe(EVENTS.NOTIFICATION.NEW, (data) => {
+  dataNotification = data;
+});
 
 const server = http.createServer(app);
 
@@ -85,8 +97,8 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
 
-  socket.on("send_message", (data) => {
-    socket.broadcast.emit("received_message", data);
+  notification.subscriber.subscribe(EVENTS.NOTIFICATION.NEW, (data) => {
+    socket.emit("notification_new", data);
   });
 });
 

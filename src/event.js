@@ -16,6 +16,10 @@ const EVENTS = Object.freeze({
     NEW: "user:new",
     GET: "user:get",
   },
+  NOTIFICATION: {
+    NEW: "notification:new",
+    GET: "notification:get",
+  },
 });
 
 publisher
@@ -48,6 +52,14 @@ appEvent.on(EVENTS.USER.GET, function (id) {
       const data = redis.redisClient.get(`user_${id}`);
       publisher.publish(this.event, JSON.stringify(data));
     });
+  }
+});
+
+appEvent.on(EVENTS.NOTIFICATION.NEW, function (data) {
+  try {
+    publisher.publish(this.event, JSON.stringify(data.dataValues));
+  } catch (error) {
+    console.log(error);
   }
 });
 
