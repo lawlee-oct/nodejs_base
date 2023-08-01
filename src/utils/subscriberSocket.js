@@ -11,10 +11,10 @@ class SubscribeSocket {
     this.subscriber
       .connect()
       .then(() => {
-        console.log("✔️  Redis SSE subscriber connected!");
+        console.log("✅ 💃 Redis SSE subscriber connected!");
       })
       .catch((err) => {
-        console.log("❌ Redis SSE subscriber connect failed!", err);
+        console.log("❌ 💃 Redis SSE subscriber connect failed!", err);
       });
   }
 

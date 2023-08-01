@@ -25,11 +25,11 @@ const EVENTS = Object.freeze({
 publisher
   .connect()
   .then(() => {
-    console.log("redis publisher connected!");
+    console.log("✅ 💃 redis publisher connected!");
     isPublisherConnected = true;
   })
   .catch((err) => {
-    console.log("redis publisher connect failed!", err);
+    console.log("❌ 💃 redis publisher connect failed!", err);
     isPublisherConnected = false;
   });
 

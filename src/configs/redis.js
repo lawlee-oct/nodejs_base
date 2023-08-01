@@ -7,7 +7,7 @@ const redisConfig = {
   prefix: process.env.REDIS_PREFIX || 'nodejs_base',
 };
 
-console.log(`Redis connecting to ${process.env.REDIS_URI}`);
+console.log(`✅ 💃 Redis connecting to ${process.env.REDIS_URI}`);
 
 const redisClient = redis.createClient(redisConfig);
 
@@ -24,7 +24,7 @@ redisClient.on('ready', () => {
 });
 
 redisClient.on('error', err => {
-  console.log('Redis err', err.message);
+  console.log('❌ 💃 Redis err', err.message);
 });
 
 const createRedisClient = () => {

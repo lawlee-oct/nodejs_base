@@ -44,11 +44,11 @@ const PORT = process.env.PORT || 3000;
 
 const appListenedHandler = (err) => {
   if (err) {
-    return console.log("Cannot run!");
+    return console.log("❌ 💃 Cannot run!");
   }
 
   connectDatabase();
-  console.log(`----> App listen on ${process.env.HOST}:${PORT} <----`);
+  console.log(`✅ 💃 App listen on ${process.env.HOST}:${PORT}`);
 };
 
 app.listen(process.env.PORT, appListenedHandler);
@@ -95,13 +95,11 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log(`User connected: ${socket.id}`);
-
   notification.subscriber.subscribe(EVENTS.NOTIFICATION.NEW, (data) => {
     socket.emit("notification_new", data);
   });
 });
 
 server.listen(3001, () => {
-  console.log("socket is running");
+  console.log("✅ 💃 socket is running");
 });
