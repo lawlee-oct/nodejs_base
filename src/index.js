@@ -79,12 +79,6 @@ const { EVENTS } = require("./event");
 
 const notification = subscriberSocket;
 
-let dataNotification = null;
-
-notification.subscriber.subscribe(EVENTS.NOTIFICATION.NEW, (data) => {
-  dataNotification = data;
-});
-
 const server = http.createServer(app);
 
 const io = new Server(server, {
