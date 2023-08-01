@@ -14,6 +14,7 @@ const connectDatabase = require("./utils/connectDatabase");
 const userRouter = require("./routers/user");
 const authRouter = require("./routers/auth");
 const notificationRouter = require("./routers/notification");
+const web3Router = require("./routers/web3");
 const customResponse = require("./middlewares/custom-response");
 // const { s3Butket } = require("./configs/s3");
 
@@ -35,6 +36,7 @@ app.use(compression());
 app.use("/v1", userRouter);
 app.use("/v1/auth", authRouter);
 app.use("/v1/", notificationRouter);
+app.use("/v1/web3", web3Router);
 
 // Handler Error
 app.use(errorLogger);
