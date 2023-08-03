@@ -9,11 +9,13 @@ const ROUTERS = {
   UPDATE_USER: "/user/update",
 
   // Notifications
-  CREATE_NOTIFICATION: '/notification/create',
+  CREATE_NOTIFICATION: "/notification/create",
 
   // Web3
-  GET_BALANCE: '/balance',
-  SEND_ETH: '/send-eth'
+  GET_BALANCE: "/balance",
+  SEND_ETH: "/send-eth",
+  GET_BLOCK: "/block",
+  GET_DETAIL_TRANSACTION: "/detail-transaction",
 };
 
 module.exports = { ROUTERS };

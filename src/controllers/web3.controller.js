@@ -17,7 +17,40 @@ class Web3Controller {
     try {
       const sendEth = await web3Service.sendEth(req.body);
 
-      res.ok(sendEth, "Send ETH Successfully!");
+      const data = {
+        transactionHash: sendEth?.transactionHash,
+        blockHash: sendEth?.blockHash,
+        fromAddress: sendEth?.from,
+        toAddress: sendEth?.to,
+      };
+
+      res.ok(data, "Send ETH Successfully!");
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getBlock(req, res, next) {
+    try {
+      const blockHashOrBlockNumber = req.blockHashOrBlockNumber;
+
+      const dataBlock = await web3Service.getBlock(blockHashOrBlockNumber);
+
+      res.ok(dataBlock, "Get block Successfully!");
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getDetailTransaction(req, res, next) {
+    try {
+      const { transactionHash } = req.body;
+
+      const detailTransaction = await web3Service.getDetailTransaction(
+        transactionHash
+      );
+
+      res.ok(detailTransaction, "Get detail transaction Successfully!");
     } catch (error) {
       next(error);
     }

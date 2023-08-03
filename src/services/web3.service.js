@@ -1,15 +1,15 @@
 const { Web3 } = require("web3");
 
-const testnet = "https://rpc.sepolia.org";
-
-const web3 = new Web3(testnet);
+const web3 = new Web3(process.env.TESTNET);
 
 class Web3Service {
   async getBalance(address) {
     try {
-      const balance = (await web3.eth.getBalance(address)).toString();
+      const balance = await web3.eth.getBalance(address);
 
-      return balance;
+      return {
+        balance: web3.utils.fromWei(balance, "ether"),
+      };
     } catch (error) {
       console.error("Đã có lỗi xảy ra:", error.message);
     }
@@ -17,7 +17,8 @@ class Web3Service {
 
   async sendEth(data) {
     try {
-      const { fromAddress, toAddress, amount, gas, gasPrice, privateKey } = data;
+      const { fromAddress, toAddress, amount, gas, gasPrice, privateKey } =
+        data;
 
       let transaction = {
         from: fromAddress,
@@ -36,9 +37,43 @@ class Web3Service {
         signTraction.rawTransaction
       );
 
-      console.log('transactionResult', transactionResult);
-
       return transactionResult;
+    } catch (error) {
+      console.error("Đã có lỗi xảy ra:", error.message);
+    }
+  }
+
+  async getBlock(blockHashOrBlockNumber) {
+    try {
+      const block = await web3.eth.getBlock(blockHashOrBlockNumber);
+
+      const { hash, parentHash, transactionsRoot, transactions } = block;
+
+      return {
+        hash,
+        parentHash,
+        transactionsRoot,
+        transactions,
+      };
+    } catch (error) {
+      console.error("Đã có lỗi xảy ra:", error.message);
+    }
+  }
+
+  async getDetailTransaction(transactionHash) {
+    try {
+      const detailTransaction = await web3.eth.getTransaction(transactionHash);
+
+      const { hash, from, to, value, gasPrice, gas } = detailTransaction;
+
+      return {
+        hash,
+        fromAddress: from,
+        toAddress: to,
+        value: web3.utils.fromWei(value, "ether"),
+        gasPrice: web3.utils.fromWei(gasPrice, "ether"),
+        gas: web3.utils.fromWei(gas, "ether"),
+      };
     } catch (error) {
       console.error("Đã có lỗi xảy ra:", error.message);
     }
