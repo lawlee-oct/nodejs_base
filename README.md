@@ -1,7 +1,5 @@
 ### Giải thích cấu trúc source:
 
-- Source được build bằng CRA
-
 | Thư mục   | Chức năng                               |
 | :-------- | :-------------------------------------- |
 | configs   | Lưu trữ các config của các thư viện     |

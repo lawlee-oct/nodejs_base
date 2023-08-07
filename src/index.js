@@ -43,6 +43,7 @@ app.use(errorLogger);
 app.use(errorHandler());
 
 const PORT = process.env.PORT || 3000;
+const PORT_SOCKET = process.env.PORT_SOCKET || 3001;
 
 const appListenedHandler = (err) => {
   if (err) {
@@ -96,6 +97,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3001, () => {
+server.listen(PORT_SOCKET, () => {
   console.log("✅ 💃 socket is running");
 });
